@@ -3,7 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Tomas Llanos — Editor de Video</title>
+<title>Tomás Llanos | Montador Audiovisual y Director de Cine en Madrid</title>
+<meta name="description" content="Portfolio de Tomás Llanos. Editor de video, montador audiovisual y director de cine con base en Madrid. Edición de documental, marca y contenido vertical.">
+
+<meta property="og:title" content="Tomás Llanos | Montador Audiovisual y Director de Cine en Madrid">
+<meta property="og:description" content="Portfolio de Tomás Llanos. Editor de video, montador audiovisual y director de cine con base en Madrid. Edición de documental, marca y contenido vertical.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://tomasllanos.com">
+<link rel="canonical" href="https://tomasllanos.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -135,6 +142,32 @@
   }
 
   .navlinks a:hover::after{width:100%;}
+
+  .lang-toggle{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    color:var(--bone-dim);
+    background:transparent;
+    border:1px solid var(--line);
+    padding:7px 12px;
+    cursor:pointer;
+    transition:color 0.25s, border-color 0.25s;
+  }
+
+  .lang-toggle:hover, .lang-toggle:focus-visible{
+    color:var(--rust);
+    border-color:var(--rust);
+  }
+
+  .lang-toggle .lang-active{
+    color:var(--rust);
+  }
+
+  body.lang-en .lang-toggle .lang-es{color:var(--bone-dim);}
+  body.lang-en .lang-toggle .lang-en{color:var(--rust);}
+  body:not(.lang-en) .lang-toggle .lang-es{color:var(--rust);}
+  body:not(.lang-en) .lang-toggle .lang-en{color:var(--bone-dim);}
 
   /* ===== HUD CORNERS (PS1-style interface frame) ===== */
   .hud-corner{
@@ -474,6 +507,7 @@
 
   /* ===== GALLERY ===== */
   #trabajo{border-bottom:1px solid var(--line);}
+  #direccion{border-bottom:1px solid var(--line);}
 
   .reel-grid{
     display:grid;
@@ -522,7 +556,6 @@
     border:0;
     filter:grayscale(45%) contrast(1.05) brightness(0.85);
     transition:filter 0.5s, transform 0.6s;
-    pointer-events:none;
   }
 
   .reel-card:hover .reel-video-wrap iframe{
@@ -814,20 +847,17 @@
   }
 
   .about-stats{
-    display:grid;
-    grid-template-columns:repeat(3, 1fr);
+    display:inline-grid;
+    grid-template-columns:1fr;
     gap:1px;
     margin-top:48px;
     border:1px solid var(--line);
   }
 
   .stat{
-    padding:24px;
+    padding:24px 32px;
     background:var(--black-soft);
-    border-right:1px solid var(--line);
   }
-
-  .stat:last-child{border-right:none;}
 
   .stat .num{
     font-family:'Rajdhani',sans-serif;
@@ -883,10 +913,29 @@
     border-bottom:1px solid var(--line);
   }
 
-  .dossier-entry:last-child{
-    border-bottom:none;
-    padding-bottom:0;
-    margin-bottom:0;
+  .dossier-skills{
+    margin-top:8px;
+  }
+
+  .dossier-skills .dossier-label{
+    margin-bottom:18px;
+  }
+
+  .skills-list{
+    list-style:none;
+    display:flex;
+    flex-wrap:wrap;
+    gap:10px;
+  }
+
+  .skills-list li{
+    font-family:'JetBrains Mono',monospace;
+    font-size:12px;
+    letter-spacing:0.04em;
+    color:var(--bone);
+    border:1px solid var(--line);
+    padding:7px 12px;
+    background:var(--black-soft);
   }
 
   .dossier-period{
@@ -1020,7 +1069,7 @@
     color:var(--bone-dim);
   }
 
-  .cm-item a.cm-value:hover{color:var(--bone);}
+  .cm-item .cm-value a:hover{color:var(--bone);}
 
   @media (max-width:900px){
     .contact-grid{grid-template-columns:1fr; gap:48px;}
@@ -1081,10 +1130,11 @@
 <nav>
   <a href="#" class="logo">TOMAS<span>.</span>LLANOS</a>
   <div class="navlinks">
-    <a href="#trabajo">Trabajo</a>
-    <a href="#sobre-mi">Sobre mí</a>
-    <a href="#formacion">Formación</a>
-    <a href="#contacto">Contacto</a>
+    <a href="#trabajo" data-es="Trabajo" data-en="Work">Trabajo</a>
+    <a href="#sobre-mi" data-es="Sobre mí" data-en="About">Sobre mí</a>
+    <a href="#formacion" data-es="Formación" data-en="Background">Formación</a>
+    <a href="#contacto" data-es="Contacto" data-en="Contact">Contacto</a>
+    <button type="button" id="lang-toggle" class="lang-toggle mono" aria-label="Cambiar idioma / Switch language"><span class="lang-es">ES</span> <span aria-hidden="true">/</span> <span class="lang-en">EN</span></button>
   </div>
 </nav>
 
@@ -1103,11 +1153,11 @@
 
     <div class="hero-grid">
       <div class="hero-text">
-        <h1 class="hero-title">TOMÁS LLANOS<br><span class="accent">DIRECTOR Y MONTADOR</span><span class="cursor-blink" aria-hidden="true">_</span></h1>
-        <p class="hero-sub">Editor de video con base documental y mirada cinematográfica. Corto, ritmo y narrativa para piezas verticales, marcas y documentales.</p>
+        <h1 class="hero-title"><span class="glitch" data-text="TOMÁS LLANOS">TOMÁS LLANOS</span><br><span class="accent" data-en="DIRECTOR & EDITOR">DIRECTOR Y EDITOR</span><span class="cursor-blink" aria-hidden="true">_</span></h1>
+        <p class="hero-sub" data-en="Video editor with a documentary background and a cinematic eye. Sharp, rhythmic storytelling for vertical content, brands and documentaries.">Editor de video con base documental y mirada cinematográfica. Corto, ritmo y narrativa para piezas verticales, marcas y documentales.</p>
         <div class="hero-actions">
-          <a href="#trabajo" class="btn-primary">Ver trabajo<span aria-hidden="true">→</span></a>
-          <a href="#contacto" class="btn-ghost">Hablemos</a>
+          <a href="#trabajo" class="btn-primary"><span data-en="See work">Ver trabajo</span><span aria-hidden="true">→</span></a>
+          <a href="#contacto" class="btn-ghost" data-en="Let's talk">Hablemos</a>
         </div>
       </div>
 
@@ -1142,10 +1192,10 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div>
-        <div class="eyebrow">Galería · Montaje</div>
-        <h2>PROYECTOS<br>MONTADOS</h2>
+        <div class="eyebrow" data-en="Gallery · Editing">Galería · Montaje</div>
+        <h2 data-en="EDITED<br>PROJECTS">PROYECTOS<br>MONTADOS</h2>
       </div>
-      <p>Edición de documental, marca y contenido vertical. Pasa el cursor sobre cada toma para ver los detalles.</p>
+      <p data-en="Documentary, brand and vertical content editing. Hover over each shot to see the details.">Edición de documental, marca y contenido vertical. Pasa el cursor sobre cada toma para ver los detalles.</p>
     </div>
   </div>
 
@@ -1156,35 +1206,50 @@
         <iframe src="https://www.youtube.com/embed/H-JlhgXXoKo" title="Spot Jardín — OCU" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       </div>
       <span class="reel-corner mono">CH-01</span>
-<span class="role-tag role-tag--montaje mono">Montaje</span>
+<span class="role-tag role-tag--montaje mono" data-en="Editing">Montaje</span>
       <div class="reel-meta">
-        <span class="reel-tag">Ad</span>
+        <span class="reel-tag" data-en="Ad">Ad</span>
         <h3>Spot "Jardín"</h3>
-        <p>OCU · 2026 · 16:9</p>
+        <p>Organización de Consumidores y Usuarios · 2025 · 16:9</p>
       </div>
     </div>
 
     <div class="reel-card" tabindex="0">
       <div class="reel-video-wrap">
-        <iframe src="https://www.youtube.com/embed/IxzEDsbwuLQ" title="Proyecto de montaje" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+        <iframe src="https://www.youtube.com/embed/IxzEDsbwuLQ" title="¿Y yo qué? — Lucía Samper Prada" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
       </div>
       <span class="reel-corner mono">CH-02</span>
-<span class="role-tag role-tag--montaje mono">Montaje</span>
+<span class="role-tag role-tag--montaje mono" data-en="Editing">Montaje</span>
       <div class="reel-meta">
-        <span class="reel-tag">Proyecto</span>
-        <h3>Nombre del proyecto</h3>
-        <p>Cliente · 2026 · 16:9</p>
+        <span class="reel-tag" data-en="Short film">Corto</span>
+        <h3>¿Y yo qué?</h3>
+        <p>Lucía Samper Prada · 2025 · 16:9</p>
       </div>
     </div>
 
     <div class="reel-card" tabindex="0">
-      <div class="reel-placeholder"><span>Sube tu video aquí</span></div>
+      <div class="reel-video-wrap">
+        <iframe src="https://www.youtube.com/embed/4MV7_I3ngsE" title="Pájaros en jaula — Sofía Melindi" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
       <span class="reel-corner mono">CH-03</span>
-<span class="role-tag role-tag--montaje mono">Montaje</span>
+<span class="role-tag role-tag--montaje mono" data-en="Editing">Montaje</span>
       <div class="reel-meta">
-        <span class="reel-tag">Marca</span>
-        <h3>Nombre del proyecto</h3>
-        <p>Cliente · 2026 · 16:9</p>
+        <span class="reel-tag" data-en="Short film">Corto</span>
+        <h3>Pájaros en jaula</h3>
+        <p>Sofía Melindi · 2025 · 16:9</p>
+      </div>
+    </div>
+
+    <div class="reel-card" tabindex="0">
+      <div class="reel-video-wrap">
+        <iframe src="https://www.youtube.com/embed/BX7K4DY1McU" title="Besa mis ojos — David Camacho" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+      <span class="reel-corner mono">CH-04</span>
+<span class="role-tag role-tag--montaje mono" data-en="Editing">Montaje</span>
+      <div class="reel-meta">
+        <span class="reel-tag" data-en="Short film">Corto</span>
+        <h3>Besa mis ojos</h3>
+        <p>David Camacho · 2025 · 16:9</p>
       </div>
     </div>
   </div>
@@ -1194,21 +1259,21 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div>
-        <div class="eyebrow">Galería · Dirección</div>
-        <h2>PROYECTOS<br>PROPIOS</h2>
+        <div class="eyebrow" data-en="Gallery · Directing">Galería · Dirección</div>
+        <h2 data-en="PERSONAL<br>PROJECTS">PROYECTOS<br>PROPIOS</h2>
       </div>
-      <p>Cortometrajes en producción. Mientras se completa la edición final, estos son fotogramas del set.</p>
+      <p data-en="Personal short films. Stills from each production set.">Cortometrajes propios. Fotogramas del set de cada producción.</p>
     </div>
 
     <div class="stills-projects reveal">
       <article class="stills-project">
         <div class="stills-project-head">
           <span class="reel-corner mono">TAKE-01</span>
-          <span class="role-tag role-tag--direccion mono">Dirección</span>
+          <span class="role-tag role-tag--direccion mono" data-en="Directing">Dirección</span>
           <div class="stills-project-meta">
-            <span class="reel-tag">Corto</span>
-            <h3>Nombre del proyecto</h3>
-            <p>Cliente · 2026 · En producción</p>
+            <span class="reel-tag" data-en="Short film">Corto</span>
+            <h3>IMC Video LTD</h3>
+            <p>Tomás Llanos · 2026</p>
           </div>
         </div>
         <div class="stills-mosaic">
@@ -1236,11 +1301,11 @@
       <article class="stills-project">
         <div class="stills-project-head">
           <span class="reel-corner mono">TAKE-02</span>
-          <span class="role-tag role-tag--direccion mono">Dirección</span>
+          <span class="role-tag role-tag--direccion mono" data-en="Directing">Dirección</span>
           <div class="stills-project-meta">
-            <span class="reel-tag">Documental</span>
-            <h3>Nombre del proyecto</h3>
-            <p>Cliente · 2026 · En producción</p>
+            <span class="reel-tag" data-en="Short film">Corto</span>
+            <h3>Promissum</h3>
+            <p>Tomás Llanos · 2026</p>
           </div>
         </div>
         <div class="stills-mosaic">
@@ -1277,24 +1342,16 @@
       </div>
 
       <div class="about-text reveal">
-        <div class="eyebrow">Sobre mí</div>
-        <h2 style="font-family:'Rajdhani',sans-serif; font-weight:700; font-size:clamp(36px,4.5vw,52px); margin-bottom:28px; line-height:1.05;">DEL GUION AL CORTE FINAL</h2>
-        <p>Vengo del periodismo y la dirección cinematográfica antes de meterme de lleno en la sala de edición. Esa mezcla me dio algo que no se aprende solo con software: <strong>saber qué historia estás contando antes de tocar un solo clip.</strong></p>
-        <p>Trabajo tanto en formato documental y corto como en contenido vertical para redes, siempre con la misma obsesión: que el ritmo del corte sirva a la historia, no al revés.</p>
-        <p>Con base en Madrid, colaboro con creadores, marcas y productoras que buscan una edición con criterio narrativo, no solo técnico.</p>
+        <div class="eyebrow" data-en="About">Sobre mí</div>
+        <h2 style="font-family:'Rajdhani',sans-serif; font-weight:700; font-size:clamp(36px,4.5vw,52px); margin-bottom:28px; line-height:1.05;" data-en="FROM SCRIPT TO FINAL CUT">DEL GUION AL CORTE FINAL</h2>
+        <p data-en="I come from journalism and film direction before fully committing to the editing room. That mix gave me something you don't learn from software alone: &lt;strong&gt;knowing what story you're telling before touching a single clip.&lt;/strong&gt;">Vengo del periodismo y la dirección cinematográfica antes de meterme de lleno en la sala de edición. Esa mezcla me dio algo que no se aprende solo con software: <strong>saber qué historia estás contando antes de tocar un solo clip.</strong></p>
+        <p data-en="I work across documentary and short film formats as well as vertical content for social media, always with the same obsession: that the rhythm of the edit serves the story, not the other way around.">Trabajo tanto en formato documental y corto como en contenido vertical para redes, siempre con la misma obsesión: que el ritmo del corte sirva a la historia, no al revés.</p>
+        <p data-en="Based in Madrid, I collaborate with creators, brands and production companies looking for editing with narrative judgement, not just technical skill.">Con base en Madrid, colaboro con creadores, marcas y productoras que buscan una edición con criterio narrativo, no solo técnico.</p>
 
         <div class="about-stats">
           <div class="stat">
-            <div class="num">06+</div>
-            <div class="label">Años en producción audiovisual</div>
-          </div>
-          <div class="stat">
-            <div class="num">2</div>
-            <div class="label">Formatos: corto y vertical</div>
-          </div>
-          <div class="stat">
             <div class="num">ES/EN</div>
-            <div class="label">Idiomas de trabajo</div>
+            <div class="label" data-en="Working languages">Idiomas de trabajo</div>
           </div>
         </div>
       </div>
@@ -1306,38 +1363,49 @@
   <div class="wrap">
     <div class="section-head reveal">
       <div>
-        <div class="eyebrow">Expediente</div>
-        <h2>FORMACIÓN Y<br>EXPERIENCIA</h2>
+        <div class="eyebrow" data-en="Dossier">Expediente</div>
+        <h2 data-en="BACKGROUND AND<br>EXPERIENCE">FORMACIÓN Y<br>EXPERIENCIA</h2>
       </div>
-      <p>Trayectoria académica y trabajo realizado: montaje, sonido y color en cortometrajes, documentales y piezas de marca.</p>
+      <p data-en="Academic background and work completed: editing, sound and color grading on short films, documentaries and brand pieces.">Trayectoria académica y trabajo realizado: montaje, sonido y color en cortometrajes, documentales y piezas de marca.</p>
     </div>
 
     <div class="dossier-grid reveal">
       <div class="dossier-col">
-        <div class="dossier-label mono">// FORMACIÓN</div>
+        <div class="dossier-label mono" data-en="// EDUCATION">// FORMACIÓN</div>
 
         <div class="dossier-entry">
-          <span class="dossier-period mono">2023 — 2026</span>
-          <h3>Diplomatura en Dirección Cinematográfica</h3>
+          <span class="dossier-period mono">2023 — 2026 · Escuela de Cine y TV Séptima Ars — Madrid, España</span>
+          <h3 data-en="Diploma in Film Direction">Diplomatura en Dirección Cinematográfica</h3>
         </div>
 
         <div class="dossier-entry">
-          <span class="dossier-period mono">2016 — 2019</span>
-          <h3>Tecnicatura en Periodismo</h3>
+          <span class="dossier-period mono">2016 — 2019 · Instituto IESERH — Rosario, Argentina</span>
+          <h3 data-en="Diploma in Journalism">Tecnicatura en Periodismo</h3>
+        </div>
+
+        <div class="dossier-skills">
+          <div class="dossier-label mono" data-en="// SKILLS">// COMPETENCIAS</div>
+          <ul class="skills-list">
+            <li>DaVinci Resolve</li>
+            <li>Adobe Premiere Pro</li>
+            <li>Pro Tools</li>
+            <li>CapCut</li>
+            <li>Adobe After Effects</li>
+          </ul>
         </div>
       </div>
 
       <div class="dossier-col">
-        <div class="dossier-label mono">// EXPERIENCIA</div>
-        <p class="dossier-intro">Montaje, diseño de sonido y corrección de color en los siguientes cortometrajes y piezas:</p>
+        <div class="dossier-label mono" data-en="// EXPERIENCE">// EXPERIENCIA</div>
+        <p class="dossier-intro" data-en="Editing, sound design and color grading on the following short films and pieces:">Montaje, diseño de sonido y corrección de color en los siguientes cortometrajes y piezas:</p>
 
         <ul class="dossier-list">
-          <li><span class="dossier-tag">Ad</span> Spot "Jardín" — OCU</li>
-          <li><span class="dossier-tag">Doc</span> "Límite y velocidad" — Andrea Peñas</li>
-          <li><span class="dossier-tag">Corto</span> "¿Y yo qué?" — Lucía Samper</li>
-          <li><span class="dossier-tag">Corto</span> "Luz" — Marco Fernández</li>
-          <li><span class="dossier-tag">Corto</span> "Cada p** mes" — Esther Márquez</li>
-          <li><span class="dossier-tag">Corto</span> "Hi" — Carlos Acebo</li>
+          <li><span class="dossier-tag" data-en="Ad">Ad</span> Spot "Jardín" — OCU</li>
+          <li><span class="dossier-tag" data-en="Doc">Doc</span> "Límite y velocidad" — Andrea Peñas</li>
+          <li><span class="dossier-tag" data-en="Short">Corto</span> "¿Y yo qué?" — Lucía Samper</li>
+          <li><span class="dossier-tag" data-en="Short">Corto</span> "Luz" — Marco Fernández</li>
+          <li><span class="dossier-tag" data-en="Short">Corto</span> "Cada p** mes" — Esther Márquez</li>
+          <li><span class="dossier-tag" data-en="Short">Corto</span> "Hi" — Carlos Acebo</li>
         </ul>
       </div>
     </div>
@@ -1348,24 +1416,24 @@
   <div class="wrap">
     <div class="contact-grid">
       <div class="contact-cta reveal">
-        <div class="eyebrow">Contacto</div>
-        <h2>¿GRABAMOS<br>LA <span class="accent">SIGUIENTE</span><br>TOMA?</h2>
-        <p>Si tienes un proyecto en mente, documental, contenido para redes o algo que aún no tiene forma, escríbeme y lo hablamos.</p>
+        <div class="eyebrow" data-en="Contact">Contacto</div>
+        <h2 data-en="SHALL WE SHOOT<br>THE <span class=&quot;accent&quot;>NEXT</span><br>TAKE?">¿GRABAMOS<br>LA <span class="accent">SIGUIENTE</span><br>TOMA?</h2>
+        <p data-en="If you're looking for an editor with a director's mindset, share my love for documentary, or have a project you want to get off the ground...<br>Let's talk!">Si buscas un editor con mentalidad de director, compartes mi amor por el documental, o tienes un proyecto en mente que quieras levantar...<br>¡Hablemos!</p>
         <a href="mailto:hola@tomasllanos.com" class="contact-email">hola@tomasllanos.com<span aria-hidden="true">↗</span></a>
       </div>
 
       <div class="contact-meta reveal">
         <div class="cm-item">
-          <div class="cm-label">Ubicación</div>
+          <div class="cm-label" data-en="Location">Ubicación</div>
           <div class="cm-value">Madrid, España</div>
         </div>
         <div class="cm-item">
-          <div class="cm-label">Disponibilidad</div>
-          <div class="cm-value">Proyectos freelance</div>
+          <div class="cm-label" data-en="Phone">Teléfono</div>
+          <div class="cm-value"><a href="tel:+34611849176">+34 611 84 91 76</a></div>
         </div>
         <div class="cm-item">
-          <div class="cm-label">Redes</div>
-          <div class="cm-value"><a href="#">LinkedIn</a> · <a href="#">Instagram</a> · <a href="#">Vimeo</a></div>
+          <div class="cm-label" data-en="Social">Redes</div>
+          <div class="cm-value"><a href="https://www.instagram.com/tomasllanos3/" target="_blank" rel="noopener noreferrer">Instagram</a></div>
         </div>
       </div>
     </div>
@@ -1374,13 +1442,13 @@
 
 <footer>
   <div class="wrap footer-row">
-    <span>© 2026 Tomas Llanos. Todos los derechos reservados.</span>
-    <span>Editado con criterio · Madrid</span>
+    <span data-en="© 2026 Tomás Llanos. All rights reserved.">© 2026 Tomas Llanos. Todos los derechos reservados.</span>
+    <span data-en="Edited with intent · Madrid">Editado con criterio · Madrid</span>
   </div>
 </footer>
 
 <div class="lightbox" id="lightbox">
-  <button class="lightbox-close" id="lightbox-close" type="button">CERRAR ✕</button>
+  <button class="lightbox-close" id="lightbox-close" type="button"><span data-en="CLOSE">CERRAR</span> ✕</button>
   <img src="" alt="" id="lightbox-img">
 </div>
 
@@ -1452,6 +1520,20 @@
     }, 2600);
   })();
 
+  // Name glitch: brief chromatic-aberration flicker on hero title, PS1/Signalis feel
+  (function(){
+    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(prefersReduced) return;
+    var nameEl = document.querySelector('.glitch');
+    if(!nameEl) return;
+    setInterval(function(){
+      if(Math.random() < 0.18){
+        nameEl.classList.add('is-glitching');
+        setTimeout(function(){ nameEl.classList.remove('is-glitching'); }, 180);
+      }
+    }, 3400);
+  })();
+
   // Lightbox for still-cell mosaics (proyectos propios)
   (function(){
     var lightbox = document.getElementById('lightbox');
@@ -1485,6 +1567,63 @@
     document.addEventListener('keydown', function(e){
       if(e.key === 'Escape') closeLightbox();
     });
+  })();
+
+  // Language toggle: ES / EN, persisted via localStorage
+  (function(){
+    var STORAGE_KEY = 'tomasllanos-lang';
+    var toggleBtn = document.getElementById('lang-toggle');
+    var translatable = document.querySelectorAll('[data-en]');
+
+    // Cache original Spanish content once, before any swap happens
+    translatable.forEach(function(el){
+      if(!el.hasAttribute('data-es-cache')){
+        el.setAttribute('data-es-cache', el.innerHTML);
+      }
+    });
+
+    function applyLanguage(lang){
+      var isEn = lang === 'en';
+      document.documentElement.lang = isEn ? 'en' : 'es';
+      document.body.classList.toggle('lang-en', isEn);
+
+      translatable.forEach(function(el){
+        var target = isEn ? el.getAttribute('data-en') : el.getAttribute('data-es-cache');
+        if(target == null) return;
+        // Use innerHTML when the string carries markup, textContent otherwise
+        if(target.indexOf('<') !== -1){
+          el.innerHTML = target;
+        } else {
+          el.textContent = target;
+        }
+      });
+    }
+
+    function getStoredLanguage(){
+      try{
+        return localStorage.getItem(STORAGE_KEY);
+      } catch(e){
+        return null;
+      }
+    }
+
+    function storeLanguage(lang){
+      try{
+        localStorage.setItem(STORAGE_KEY, lang);
+      } catch(e){ /* localStorage unavailable, fail silently */ }
+    }
+
+    var initialLang = getStoredLanguage() || 'es';
+    applyLanguage(initialLang);
+
+    if(toggleBtn){
+      toggleBtn.addEventListener('click', function(){
+        var current = document.body.classList.contains('lang-en') ? 'en' : 'es';
+        var next = current === 'en' ? 'es' : 'en';
+        applyLanguage(next);
+        storeLanguage(next);
+      });
+    }
   })();
 </script>
 
