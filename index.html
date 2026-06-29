@@ -11,6 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://tomasllanos.com">
 <link rel="canonical" href="https://tomasllanos.com">
+<link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600;700&family=JetBrains+Mono:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -590,6 +591,7 @@
     background:linear-gradient(to top, rgba(10,10,11,0.92) 0%, rgba(10,10,11,0.1) 55%, transparent 100%);
     opacity:0;
     transition:opacity 0.4s;
+    pointer-events:none;
   }
 
   .reel-card:hover .reel-meta, .reel-card:focus-visible .reel-meta{opacity:1;}
@@ -613,6 +615,7 @@
     padding:5px 10px;
     border:1px solid;
     background:rgba(10,8,8,0.7);
+    pointer-events:none;
   }
 
   .role-tag--montaje{
@@ -774,6 +777,7 @@
     display:flex;
     align-items:center;
     gap:6px;
+    pointer-events:none;
   }
 
   .reel-corner::before{
@@ -811,6 +815,7 @@
   .about-frame img{
     width:100%;height:100%;
     object-fit:cover;
+    object-position:65% 25%;
     filter:grayscale(35%) contrast(1.05);
   }
 
@@ -1153,7 +1158,7 @@
 
     <div class="hero-grid">
       <div class="hero-text">
-        <h1 class="hero-title"><span class="glitch" data-text="TOMÁS LLANOS">TOMÁS LLANOS</span><br><span class="accent" data-en="DIRECTOR & EDITOR">DIRECTOR Y EDITOR</span><span class="cursor-blink" aria-hidden="true">_</span></h1>
+        <h1 class="hero-title">TOMÁS LLANOS<br><span class="accent" data-en="DIRECTOR & EDITOR">DIRECTOR Y EDITOR</span><span class="cursor-blink" aria-hidden="true">_</span></h1>
         <p class="hero-sub" data-en="Video editor with a documentary background and a cinematic eye. Sharp, rhythmic storytelling for vertical content, brands and documentaries.">Editor de video con base documental y mirada cinematográfica. Corto, ritmo y narrativa para piezas verticales, marcas y documentales.</p>
         <div class="hero-actions">
           <a href="#trabajo" class="btn-primary"><span data-en="See work">Ver trabajo</span><span aria-hidden="true">→</span></a>
@@ -1344,9 +1349,8 @@
       <div class="about-text reveal">
         <div class="eyebrow" data-en="About">Sobre mí</div>
         <h2 style="font-family:'Rajdhani',sans-serif; font-weight:700; font-size:clamp(36px,4.5vw,52px); margin-bottom:28px; line-height:1.05;" data-en="FROM SCRIPT TO FINAL CUT">DEL GUION AL CORTE FINAL</h2>
-        <p data-en="I come from journalism and film direction before fully committing to the editing room. That mix gave me something you don't learn from software alone: &lt;strong&gt;knowing what story you're telling before touching a single clip.&lt;/strong&gt;">Vengo del periodismo y la dirección cinematográfica antes de meterme de lleno en la sala de edición. Esa mezcla me dio algo que no se aprende solo con software: <strong>saber qué historia estás contando antes de tocar un solo clip.</strong></p>
-        <p data-en="I work across documentary and short film formats as well as vertical content for social media, always with the same obsession: that the rhythm of the edit serves the story, not the other way around.">Trabajo tanto en formato documental y corto como en contenido vertical para redes, siempre con la misma obsesión: que el ritmo del corte sirva a la historia, no al revés.</p>
-        <p data-en="Based in Madrid, I collaborate with creators, brands and production companies looking for editing with narrative judgement, not just technical skill.">Con base en Madrid, colaboro con creadores, marcas y productoras que buscan una edición con criterio narrativo, no solo técnico.</p>
+        <p data-en="Cinema has had me hooked for as long as I can remember, and today I have the tools to put it into practice. Having completed my studies in film direction, I feel driven to give everything to every project ahead, with the goal of connecting, exchanging ideas, making contacts and continuing to learn in the subject I love most: telling stories.">El cine me tiene atrapado desde que recuerdo, y hoy tengo las herramientas necesarias para ponerlo en práctica. Completados mis estudios en dirección cinematográfica, siento el impulso para dejarme la piel en cada proyecto venidero con el objetivo de conectar, intercambiar ideas, generar contactos y seguirme formando en el tema que tanto me gusta: contar historias.</p>
+        <p data-en="I'm currently based in Madrid and open to collaborating with content creators, agencies, fellow professionals, brands and production companies — whether they're looking for editing with narrative and technical judgement, or support throughout the editing process of their projects.">Actualmente resido en Madrid y estoy abierto a colaborar con creadores de contenido, agencias, compañeros de profesión, marcas y productoras. Tanto que busquen una edición con criterio narrativo y técnico, así como quienes busquen un acompañamiento en el proceso de montaje de sus proyectos.</p>
 
         <div class="about-stats">
           <div class="stat">
@@ -1518,20 +1522,6 @@
         setTimeout(function(){ strip.classList.remove('tracking-error'); }, 160);
       }
     }, 2600);
-  })();
-
-  // Name glitch: brief chromatic-aberration flicker on hero title, PS1/Signalis feel
-  (function(){
-    var prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-    if(prefersReduced) return;
-    var nameEl = document.querySelector('.glitch');
-    if(!nameEl) return;
-    setInterval(function(){
-      if(Math.random() < 0.18){
-        nameEl.classList.add('is-glitching');
-        setTimeout(function(){ nameEl.classList.remove('is-glitching'); }, 180);
-      }
-    }, 3400);
   })();
 
   // Lightbox for still-cell mosaics (proyectos propios)
